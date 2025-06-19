@@ -1,0 +1,18 @@
+1- criar serviço cadastro de categoria
+2 -serviço 02 cadastra produto com a relação a categoria
+3- mensageria kkafka e rabmit
+3- kuerbentes
+4- observabilidade
+5-replicação em um banco mongo db
+6 - kong 
+7- integracao com front ends 
+
+
+
+comando para haibilitar criar projeto nest js 
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+
+ npm i -g @nestjs/cli
+$ nest new project-name
