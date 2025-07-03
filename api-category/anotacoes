@@ -1,0 +1,5 @@
+configurao do kafka 
+
+
+npm i --save kafkajs
+npm install @nestjs/microservices

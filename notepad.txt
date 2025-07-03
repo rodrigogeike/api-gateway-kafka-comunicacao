@@ -16,3 +16,8 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
  npm i -g @nestjs/cli
 $ nest new project-name
+
+
+instalacao do kafka 
+
+npm i --save kafkajs
