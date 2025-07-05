@@ -43,3 +43,9 @@ services:
      - broker
     ports:
       - 8081:8080
+
+
+networks:
+  default:
+    external:
+      name: category01

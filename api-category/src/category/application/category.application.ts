@@ -2,17 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from '../domain/entities/category.entity';
+import { KafkaProducerRepository } from 'src/kafka/infra/kafka.repository';
 
 @Injectable()
 export class CategoryApplication {
     constructor(
         @InjectRepository(Category)
         private readonly categoryRepository: Repository<Category>,
+        private readonly kafkaProducerRepository: KafkaProducerRepository
     ) {}
 
     async create(name: string): Promise<Category> {
         const category = this.categoryRepository.create({ name });
-        return await this.categoryRepository.save(category);
+        const newCategory = await this.categoryRepository.save(category);
+        await this.kafkaProducerRepository.sendMessage('category-created', newCategory);
+        return newCategory;
     }
 
     async findAll(): Promise<Category[]> {
