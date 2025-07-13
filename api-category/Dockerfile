@@ -1,13 +1,17 @@
 # Base image
-FROM node:22
+FROM node:22-alpine
 
 # Create app directory
 WORKDIR  /usr/src/app
 
-RUN npm i -g @nestjs/cli
+# Instalar dependências globais necessárias
+RUN npm install -g @nestjs/cli nodemon
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
+
+# Instalar dependências
+RUN npm install
 
 # Install app dependencies
 RUN npm i --save @nestjs/cli
@@ -15,8 +19,10 @@ RUN npm i --save @nestjs/core @nestjs/common
 RUN npm i --save typeorm @nestjs/typeorm pg
 RUN npm i --save bcrypt
 RUN npm i --save class-validator class-transformer
+RUN npm i --save kafkajs
+RUN npm install @nestjs/microservices
 
-RUN npm install
+
 
 
 # Bundle app source
@@ -26,4 +32,6 @@ COPY . .
 EXPOSE 3000
 
 # Start the server using the production build
-CMD ["sh", "-c", "npm install && tail -f /dev/null"]
+
+CMD ["npm", "run", "start:dev"] 
+

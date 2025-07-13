@@ -1,22 +1,37 @@
-FROM node:22-slim
+# Base image
+FROM node:22-alpine
 
-RUN apt update && apt install -y \
-        curl \
-        git \
-        wget \
-        zsh \
-        procps \
-        iputils-ping \
-        fonts-powerline
+# Create app directory
+WORKDIR  /usr/src/app
 
-USER node
+# Instalar dependências globais necessárias
+RUN npm install -g @nestjs/cli nodemon
 
-WORKDIR /home/node/app
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
 
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
-    -p https://github.com/zdharma-continuum/fast-syntax-highlighting \
-    -p https://github.com/zsh-users/zsh-autosuggestions \
-    -p https://github.com/zsh-users/zsh-completions \
-    -a 'export TERM=xterm-256color'
+# Instalar dependências
+RUN npm install
 
-CMD [ "/home/node/app/.docker/start-dev.sh" ]
+# Install app dependencies
+RUN npm i --save @nestjs/cli
+RUN npm i --save @nestjs/core @nestjs/common
+RUN npm i --save typeorm @nestjs/typeorm pg
+RUN npm i --save bcrypt
+RUN npm i --save class-validator class-transformer
+RUN npm i --save kafkajs
+RUN npm install @nestjs/microservices
+
+
+
+
+# Bundle app source
+COPY . .
+
+# Creates a "dist" folder with the production build
+EXPOSE 3001
+
+# Start the server using the production build
+
+CMD ["npm", "run", "start:dev"] 
+

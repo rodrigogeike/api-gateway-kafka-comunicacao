@@ -20,8 +20,12 @@ services:
     volumes:
       - ./.docker/pgsql/dbdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: pguser
-      POSTGRES_PASSWORD: pgpassword
+      - NODE_ENV=development
+      - DB_HOST=pgsql-category01
+      - DB_PORT=5432
+      - DB_USERNAME=pguser
+      - DB_PASSWORD=pgpassword
+      - DB_DATABASE=nestjs
   
   # mongodb:
   #   image: mongo:4.4.4

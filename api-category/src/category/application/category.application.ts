@@ -15,7 +15,8 @@ export class CategoryApplication {
     async create(name: string): Promise<Category> {
         const category = this.categoryRepository.create({ name });
         const newCategory = await this.categoryRepository.save(category);
-        await this.kafkaProducerRepository.sendMessage('category-created', newCategory);
+        console.log("envio para kafka", category);
+        await this.kafkaProducerRepository.sendMessage('category-created', category);
         return newCategory;
     }
 

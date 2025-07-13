@@ -9,6 +9,7 @@ import { CategoryRepository } from './infra/category.repository';
 @Module({
     imports: [TypeOrmModule.forFeature([Category])],
     providers: [CategoryApplication, CategoryRepository],
-    controllers: [CategoryPresentation]
+    controllers: [CategoryPresentation],
+    exports: [CategoryRepository],
 })
 export class CategoryModule {}
