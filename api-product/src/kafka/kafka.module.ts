@@ -20,6 +20,9 @@ import { KafkaConsumerRepository } from './infra/kafka.consumer';
           consumer: {
             groupId: 'category-consumer', // ajuste para seu grupo
           },
+          producer: {
+            createPartitioner: 'LegacyPartitioner'
+          } as any
         },
       },
     ]),
