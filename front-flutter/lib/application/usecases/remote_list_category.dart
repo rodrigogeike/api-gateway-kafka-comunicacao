@@ -1,4 +1,3 @@
-
 import 'package:projeto/application/output/remote_output_listcategory_model.dart';
 import 'package:projeto/domain/entites/category_entity.dart';
 import 'package:projeto/domain/helpers/domain_error.dart';
@@ -16,10 +15,10 @@ class RemoteListCategory implements ListCategory {
   Future<List<CategoryEntity>> listCategory(ListCategoryParams params) async {
     final body = RemoteListCategoryParams.fromDomain(params).toJson();
     try {
-      final httpResponse =
-          await httpClient.request(url: url, method: 'post', body: body);
+      final httpResponse = await httpClient.request(url: url, method: 'get');
       return RemoteOutputListCategory.fromJson(httpResponse).toEntityList();
     } on HttpError catch (error) {
+      print(error);
       throw error == HttpError.unauthorized
           ? DomainError.invalidCredentials
           : DomainError.unexpected;
@@ -30,14 +29,11 @@ class RemoteListCategory implements ListCategory {
 class RemoteListCategoryParams {
   final int page;
   final int limit;
-  final String search;
-  final bool paginate;
+  final String? search;
+  final bool? paginate;
 
   RemoteListCategoryParams(
-      {required this.page,
-      required this.limit,
-      required this.search,
-      required this.paginate});
+      {required this.page, required this.limit, this.search, this.paginate});
 
   factory RemoteListCategoryParams.fromDomain(ListCategoryParams params) =>
       RemoteListCategoryParams(

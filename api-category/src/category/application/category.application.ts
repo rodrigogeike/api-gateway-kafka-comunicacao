@@ -15,12 +15,12 @@ export class CategoryApplication {
     async create(name: string): Promise<Category> {
         const category = this.categoryRepository.create({ name });
         const newCategory = await this.categoryRepository.save(category);
-        console.log("envio para kafka", category);
         await this.kafkaProducerRepository.sendMessage('category-created', category);
         return newCategory;
     }
 
     async findAll(): Promise<Category[]> {
+        
         return await this.categoryRepository.find();
     }
 

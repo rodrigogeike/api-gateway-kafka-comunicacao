@@ -2,7 +2,7 @@ import 'package:projeto/domain/entites/category_entity.dart';
 import 'package:projeto/infra/http/http_error.dart';
 
 class RemoteOuputCategory {
-  final String id;
+  final int id;
   final String name;
 
   RemoteOuputCategory({

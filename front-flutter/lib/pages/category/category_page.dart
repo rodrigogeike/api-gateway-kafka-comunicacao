@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:projeto/pages/category/category_presentation.dart';
 import 'package:projeto/pages/category/components/category_button.dart';
 import 'package:projeto/pages/category/components/category_gridView.dart';
 import 'package:projeto/pages/category/components/category_input.dart';
+import 'package:provider/provider.dart';
 
 class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
+    final presenter = Provider.of<CategoryPresentation>(context);
+    presenter.loadCategories();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastar Usuario'),
+        title: const Text('Lista de Categorias'),
       ),
       body: GestureDetector(
         child: SingleChildScrollView(
@@ -20,7 +24,7 @@ class CategoryPage extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(top: 0, bottom: 20),
-                      child: CategoryGridview(),
+                      child: CategoryListView(),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 20, bottom: 20),

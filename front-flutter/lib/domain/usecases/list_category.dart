@@ -9,14 +9,11 @@ abstract class ListCategory {
 class ListCategoryParams extends Equatable {
   final int page;
   final int limit;
-  final String search;
-  final bool paginate;
+  final String? search;
+  final bool? paginate;
 
   List get props => [page, limit, search, paginate];
 
   ListCategoryParams(
-      {required this.page,
-      required this.limit,
-      required this.search,
-      required this.paginate});
+      {required this.page, required this.limit, this.search, this.paginate});
 }

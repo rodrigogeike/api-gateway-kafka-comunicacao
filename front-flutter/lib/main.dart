@@ -6,6 +6,7 @@ import 'package:projeto/main/factories/pages/user/user_page_factory.dart';
 import 'package:projeto/main/factories/usecases/authentication_factory.dart';
 import 'package:projeto/main/factories/usecases/create_category_factory.dart';
 import 'package:projeto/main/factories/usecases/create_user_factory.dart';
+import 'package:projeto/main/factories/usecases/list_category_factory.dart';
 import 'package:projeto/main/factories/usecases/save_current_account_factory.dart';
 import 'package:projeto/pages/category/category_presentation.dart';
 import 'package:projeto/pages/login/login.dart';
@@ -28,8 +29,8 @@ void main() {
       ),
       ChangeNotifierProvider(
         create: (context) => CategoryPresentation(
-          categoryRemote: makeRemoteCreateCategory(),
-        ),
+            categoryRemote: makeRemoteCreateCategory(),
+            listCategoryRemote: makeRemoteListCategory()),
       ),
     ],
     child: App(),
