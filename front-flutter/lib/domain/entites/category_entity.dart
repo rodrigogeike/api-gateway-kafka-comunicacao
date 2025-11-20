@@ -6,5 +6,5 @@ class CategoryEntity extends Equatable {
 
   List get props => [name];
 
-  CategoryEntity({required this.id, required this.name, n});
+  CategoryEntity({required this.id, required this.name});
 }

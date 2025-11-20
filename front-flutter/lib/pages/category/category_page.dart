@@ -7,8 +7,6 @@ import 'package:provider/provider.dart';
 
 class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
-    final presenter = Provider.of<CategoryPresentation>(context);
-    presenter.loadCategories();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lista de Categorias'),
