@@ -15,12 +15,11 @@ class RemoteOutputListCategory {
       throw HttpError.invalidData;
     }
     return RemoteOutputListCategory(
-      categories: jsonList
-          .map((json) => RemoteOuputCategory.fromJson(json))
-          .toList(),
+      categories:
+          jsonList.map((json) => RemoteOuputCategory.fromJson(json)).toList(),
     );
   }
-    List<CategoryEntity> toEntityList() {
+  List<CategoryEntity> toEntityList() {
     return categories.map((category) => category.toEntity()).toList();
   }
 }

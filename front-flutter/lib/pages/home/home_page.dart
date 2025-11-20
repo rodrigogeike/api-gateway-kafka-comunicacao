@@ -14,17 +14,17 @@ class HomePage extends StatelessWidget {
               children: [
                 const Text('Rotina de cadastros!'),
                 const SizedBox(height: 20),
-                // ElevatedButton(
-                //   onPressed: () async {
-                //     Navigator.of(context).pushNamed("/user");
-                //   },
-                //   child: const Text('Cadastrar Usuario'),
-                // ),
                 ElevatedButton(
                   onPressed: () async {
                     Navigator.of(context).pushNamed("/category");
                   },
                   child: const Text('Cadastrar Categoria'),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    Navigator.of(context).pushNamed("/user");
+                  },
+                  child: const Text('Cadastrar Produto'),
                 ),
               ],
             );

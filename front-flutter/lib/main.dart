@@ -7,10 +7,12 @@ import 'package:projeto/main/factories/usecases/authentication_factory.dart';
 import 'package:projeto/main/factories/usecases/create_category_factory.dart';
 import 'package:projeto/main/factories/usecases/create_user_factory.dart';
 import 'package:projeto/main/factories/usecases/list_category_factory.dart';
+import 'package:projeto/main/factories/usecases/list_product_factory.dart';
 import 'package:projeto/main/factories/usecases/save_current_account_factory.dart';
 import 'package:projeto/pages/category/category_presentation.dart';
 import 'package:projeto/pages/login/login.dart';
 import 'package:projeto/pages/login/login_presentation.dart';
+import 'package:projeto/pages/product/product_presentation.dart';
 import 'package:projeto/pages/user/user_presentation.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +33,10 @@ void main() {
         create: (context) => CategoryPresentation(
             categoryRemote: makeRemoteCreateCategory(),
             listCategoryRemote: makeRemoteListCategory()),
+      ),
+      ChangeNotifierProvider(
+        create: (context) =>
+            ProductPresentation(listProductRemote: makeRemoteListProduct()),
       ),
     ],
     child: App(),
